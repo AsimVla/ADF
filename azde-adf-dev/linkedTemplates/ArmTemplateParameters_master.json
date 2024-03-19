@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azde-adf-dev"
+		},
+		"azdesourcesqldb_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=azde-source.database.windows.net;Initial Catalog=azde-sqldb-src;User ID=azde_admin"
+		},
+		"RestService_source_properties_typeProperties_url": {
+			"value": "https://airlabs.co/api/v9/airlines"
+		},
+		"azdedatalakesink_properties_typeProperties_url": {
+			"value": "https://azdedatalakesink.dfs.core.windows.net/"
+		},
+		"azdedatalakesink_properties_typeProperties_tenant": {
+			"value": "86766fcb-dccb-4d3f-bf03-469c8fe2ad9d"
+		},
+		"azdedatalakesink_properties_typeProperties_servicePrincipalId": {
+			"value": "71b4ee5a-5534-4972-9549-46165fae4cac"
+		},
+		"azdekvdev_properties_typeProperties_baseUrl": {
+			"value": "https://azde-kv-dev.vault.azure.net/"
+		},
+		"azdesourcedatalake_properties_typeProperties_url": {
+			"value": "https://azdesourcedatalake.dfs.core.windows.net/"
+		},
+		"azdesourcedatalake_properties_typeProperties_tenant": {
+			"value": "86766fcb-dccb-4d3f-bf03-469c8fe2ad9d"
+		},
+		"azdesourcedatalake_properties_typeProperties_servicePrincipalId": {
+			"value": "71b4ee5a-5534-4972-9549-46165fae4cac"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
