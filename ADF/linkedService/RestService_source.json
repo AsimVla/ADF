@@ -1,0 +1,14 @@
+{
+	"name": "RestService_source",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Linked service for RestSource https://airlabs.co/api/v9/airlines",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://airlabs.co/api/v9/airlines",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

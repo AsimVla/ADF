@@ -1,0 +1,12 @@
+{
+	"name": "azdekvdev",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Linked service for azde-kv-dev Azure Key Vault",
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://azde-kv-dev.vault.azure.net/"
+		}
+	}
+}

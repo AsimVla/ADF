@@ -1,0 +1,109 @@
+{
+	"name": "copy rest api",
+	"properties": {
+		"description": "Fetch data from airlabs.co API",
+		"activities": [
+			{
+				"name": "Web_Fetch_Airlabs",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://azde-kv-dev.vault.azure.net/secrets/api-url-key/7f33ea5b642d492ab0ce05233c37f833?api-version=7.0",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "Copy airlines data",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Web_Fetch_Airlabs",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['response']"
+								},
+								"sink": {
+									"path": "$['response']"
+								}
+							}
+						],
+						"collectionReference": ""
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "RestResource_source",
+						"type": "DatasetReference",
+						"parameters": {
+							"url": {
+								"value": "@activity('Web_Fetch_Airlabs').output.value",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Json_sink",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "raw",
+							"filename": {
+								"value": "@concat('/airlines/Date_Part=',formatDateTime(utcNow(), 'yyyy-MM-dd'), '/airlines.json')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-03-19T07:18:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

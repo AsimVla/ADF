@@ -1,0 +1,23 @@
+{
+	"name": "azdedatalakesink",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Linked service for azdedatalakesink storage account",
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://azdedatalakesink.dfs.core.windows.net/",
+			"tenant": "86766fcb-dccb-4d3f-bf03-469c8fe2ad9d",
+			"servicePrincipalId": "71b4ee5a-5534-4972-9549-46165fae4cac",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"servicePrincipalCredential": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "azdekvdev",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "data-app-secret"
+			}
+		}
+	}
+}

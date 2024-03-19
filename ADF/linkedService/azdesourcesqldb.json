@@ -1,0 +1,20 @@
+{
+	"name": "azdesourcesqldb",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Linked service for source Azure SQL DB",
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=azde-source.database.windows.net;Initial Catalog=azde-sqldb-src;User ID=azde_admin",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "azdekvdev",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "source-sqldb-password"
+			}
+		}
+	}
+}

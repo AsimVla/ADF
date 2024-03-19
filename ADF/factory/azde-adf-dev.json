@@ -1,0 +1,9 @@
+{
+	"name": "azde-adf-dev",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d0eb9c64-8998-425b-a62c-e193e62c8b15",
+		"tenantId": "86766fcb-dccb-4d3f-bf03-469c8fe2ad9d"
+	}
+}
